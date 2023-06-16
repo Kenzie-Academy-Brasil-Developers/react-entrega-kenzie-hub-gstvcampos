@@ -1,11 +1,11 @@
 import { forwardRef } from "react"
+import { StyledFieldBox, StyledInput, StyledLabel } from "../../styles/form"
 
 export const Input = forwardRef(({label, error, ...rest}, ref) => {
     return (
-        <div>
-            <label htmlFor="">{label}</label>
-            <input type="text" />
-        </div>
-
+        <StyledFieldBox>
+            <StyledLabel>{label}</StyledLabel>
+            <StyledInput ref={ref} {...rest} error={error ? true : false}/>
+        </StyledFieldBox>
     )
 })
