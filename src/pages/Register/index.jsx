@@ -1,17 +1,22 @@
 import { useForm } from "react-hook-form"
+import { Input } from "../../components/Input"
 
 
 function RegisterPage() {
     const { register, handleSubmit } = useForm()
 
-    const submit = (event) => {
-        event.preventDefault()
-
+    const submit = (formData) => {
+        console.log(formData)
     }
 
     return (
-        <form>
-            <input type="text" />
+        <form onSubmit={handleSubmit(submit)}>
+            <Input
+                label="Nome"
+                type="text"
+                {...register("")}
+                error={erros.author}
+            />
         </form>
     )
 }
