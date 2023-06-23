@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Input } from "../Input"
 import { registerFormShema } from "./registerFormShema"
+import { Select } from "../Select"
+import { StyledButton } from "../../styles/buttons"
 
 /*
 
@@ -18,7 +20,10 @@ POST /users
 */
 
 function RegisterFrom() {
-    const { register, handleSubmit, formState: { erros },
+    const { 
+        register, 
+        handleSubmit, 
+        formState: { errors }
     } = useForm({
         resolver: zodResolver(registerFormShema)
     })
@@ -34,7 +39,6 @@ function RegisterFrom() {
                 type="text"
                 placeholder="Digite aqui seu nome"
                 {...register("name")}
-                error={erros.name}
             />
 
             <Input
@@ -42,7 +46,6 @@ function RegisterFrom() {
                 type="text"
                 placeholder="Digite aqui seu email"
                 {...register("email")}
-                error={erros.email}
             />
 
             <Input
@@ -50,7 +53,6 @@ function RegisterFrom() {
                 type="password"
                 placeholder="Digite aqui sua senha"
                 {...register("password")}
-                error={erros.password}
             />
 
             <Input
@@ -58,7 +60,6 @@ function RegisterFrom() {
                 type="password"
                 placeholder="Digite novamente sua senha"
                 {...register("confirm")}
-                error={erros.author}
             />
 
             <Input
@@ -66,7 +67,6 @@ function RegisterFrom() {
                 type="text"
                 placeholder="Fale sobre você"
                 {...register("bio")}
-                error={erros.author}
             />
 
             <Input
@@ -74,11 +74,15 @@ function RegisterFrom() {
                 type="text"
                 placeholder="Opção de contato"
                 {...register("contact")}
-                error={erros.author}
             />
 
+            {/* <Select {...register("course_module")} error={erros.course_module} label="Selecionar módulo">
+                <option value="">Primeiro Módulo</option>
+                <option value="">Primeiro Módulo</option>
+                <option value="">Primeiro Módulo</option>
+            </Select> */}
 
-            <button type="submit">Cadastrar</button>
+            <StyledButton type="submit">Cadastrar</StyledButton>
         </form>
     )
 }

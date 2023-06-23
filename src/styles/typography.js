@@ -4,7 +4,7 @@ export const TitleStyles = css`
     font-family: var(--font-primary);
     color: var(--color-grey-0);
     line-height: 1.6;
-    font-size: 1rem;
+    font-size: clamp(0.75rem, 7vw, 1rem);
     font-weight: 700;
 `
 
@@ -24,7 +24,7 @@ export const StyledHeadline = styled.h4`
     font-family: var(--font-primary);
     color: var(--color-grey-1);
     line-height: 1.6;
-    font-size: 16px;
+    font-size: clamp(0.5rem, 7vw, 0.75rem);
     font-weight: 400;
 
     ${({fontStyle}) => {
