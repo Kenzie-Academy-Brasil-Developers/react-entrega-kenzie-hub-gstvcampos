@@ -1,7 +1,7 @@
-import { GlobalStyle } from './styles/global'
-import { ResetStyle } from './styles/reset'
+import { GlobalStyle } from "./styles/global"
+import { ResetStyle } from "./styles/reset"
 
-import RountesMain from './routes/RountesMain'
+import RountesMain from "./routes/RountesMain"
 
 function App() {
   return (

@@ -9,7 +9,7 @@ import { StyledButton } from "../../styles/buttons"
 import { api } from "../../services/api"
 
 import { ToastContainer, toast } from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css'
+import "react-toastify/dist/ReactToastify.css"
 
 function RegisterForm() {
     const navigate = useNavigate()
