@@ -1,14 +1,15 @@
 import { forwardRef } from "react"
+import { StyledLabel } from "../../styles/form"
+import { StyledSelectBox } from "./style"
 
-export const Select = forwardRef(({children, error, label,...rest}, ref) => {
+export const Select = forwardRef(({children, label,...rest}, ref) => {
     return (
-        <div>
+        <StyledSelectBox>
             {label ? <StyledLabel>{label}</StyledLabel> : null}
             <select ref={ref} {...rest}>
                 {children}
             </select>
-            { error ? <p>{error.message}</p> : <p></p> }
-        </div>
+        </StyledSelectBox>
     )
 
 })

@@ -18,6 +18,11 @@ export const StyledLoginPage = styled.div`
         padding-top: 1rem;
         text-align: center;
     }
+
+    h4 {
+        margin-bottom: 1rem;
+    }
+
     .form__container {
         background-color: var(--color-grey-3);
         border-radius: .25rem;
@@ -27,8 +32,14 @@ export const StyledLoginPage = styled.div`
         display: flex;
         flex-direction: column;
 
-        gap: 1rem;
         padding: 1rem;
+    }
+
+    form > p {
+        color: red;
+        font-size: clamp(0.50rem, 7vw, 0.75rem);
+        margin-bottom: 0.5rem;
+        height: 1rem;
     }
 
     .main__container {

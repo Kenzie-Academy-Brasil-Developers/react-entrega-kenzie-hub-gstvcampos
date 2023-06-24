@@ -4,16 +4,16 @@ import { Input } from "../Input"
 import { loginFormShema } from "./loginFormShema"
 import { StyledButton, StyledLink } from "../../styles/buttons"
 import { StyledHeadline } from "../../styles/typography"
+import { useNavigate } from "react-router-dom"
 
-// POST /sessions - FORMATO DA REQUISIÇÃO
+import { api } from "../../services/api"
 
-// {
-//   "email": "johndoe@email.com",
-//   "password": "123456"
-// }
-
+import { ToastContainer, toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 
 function LoginFrom() {
+    const navigate = useNavigate()
+ 
     const { 
         register, 
         handleSubmit, 
@@ -22,8 +22,28 @@ function LoginFrom() {
         resolver: zodResolver(loginFormShema)
     })
 
+    const userLogin = async (formData) => {
+        try {
+            const {data} = await api.post('/sessions', formData)
+            localStorage.setItem("@TOKEN", JSON.stringify(data.token))
+            localStorage.setItem("@USER", JSON.stringify(data.user))
+            navigate("/dashboard")
+        } catch (error) {
+            toast.error('login ou senha inválidos', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            })
+        }
+    }
+
     const submit = (formData) => {
-        console.log(formData)
+        userLogin(formData)
     }
 
     return (
@@ -34,6 +54,7 @@ function LoginFrom() {
                 placeholder="Digite aqui seu email"
                 {...register("email")}
             />
+            {errors.email ? <p>{errors.email.message}</p> : <p></p>}
 
             <Input
                 label="Senha"
@@ -41,16 +62,18 @@ function LoginFrom() {
                 placeholder="Digite aqui sua senha"
                 {...register("password")}
             />
+            {errors.password ? <p>{errors.password.message}</p> : <p></p>}
 
             <StyledButton type="submit">Entrar</StyledButton>
 
             <StyledHeadline fontStyle="bold">Ainda não possui uma conta?</StyledHeadline>
 
-            <StyledLink colorStyle="grey"
+            <StyledLink
                 to="/register"
             >
                 Cadastre-se
             </StyledLink>
+            <ToastContainer/>
         </form>
     )
 }

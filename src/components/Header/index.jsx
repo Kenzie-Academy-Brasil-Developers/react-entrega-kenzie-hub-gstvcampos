@@ -1,24 +1,24 @@
 import logo from "../../assets/logo.svg"
-import { Link } from "react-router-dom"
 
-import { StyledContainer } from "../../styles/container"
 import { StyledHeader } from "./style"
-import { StyledLink } from "../../styles/buttons"
+import { StyledSmallLink } from "../../styles/buttons"
 
-function Header({ buttonTo, buttonText }) {
+function Header({ buttonTo, buttonText, onButtonClick }) {
+    const handleClick = onButtonClick ? onButtonClick : null
+
     return (
         <StyledHeader>
                 <img src={logo} alt="Logo Kenzie Hub" />
                 {buttonText ? 
-                    <StyledLink
+                    <StyledSmallLink
                         to={buttonTo}
+                        onClick={handleClick}
                     >
                         {buttonText}
-                    </StyledLink>
+                    </StyledSmallLink>
                 : null}
         </StyledHeader>
     )
 }
 
 export default Header
-

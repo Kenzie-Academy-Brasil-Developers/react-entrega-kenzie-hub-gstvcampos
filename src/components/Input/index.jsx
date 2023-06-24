@@ -6,7 +6,6 @@ export const Input = forwardRef(({label, error, ...rest}, ref) => {
         <StyledFieldBox>
             {label ? <StyledLabel>{label}</StyledLabel> : null}
             <StyledInput ref={ref} {...rest} error={error ? true : false}/>
-            {error ? <p>{error.massage}</p> : <p></p>}
         </StyledFieldBox>
     )
 })

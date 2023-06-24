@@ -23,11 +23,18 @@ export const StyledRegisterPage = styled.div`
         display: flex;
         flex-direction: column;
 
-        gap: 1rem;
         padding: 1rem;
     }
 
+    form > p {
+        color: red;
+        font-size: clamp(0.50rem, 7vw, 0.75rem);
+        margin-bottom: 0.5rem;
+        height: 1rem;
+    }
+    
     .main__container {
 
     }
+
 `
