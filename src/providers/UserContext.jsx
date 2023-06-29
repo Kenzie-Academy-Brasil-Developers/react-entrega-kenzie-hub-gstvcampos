@@ -17,14 +17,13 @@ export const UserProvider = ({ children }) => {
 
     useEffect(() => {
         const token = localStorage.getItem("@TOKEN")
-        const headers = { 'Authorization': `Bearer ${token}` }
-        console.log(headers)
+
         const loadUser = async () => {
             try {
                 setLoading(true)
                 const { data } = await api.get("/profile", {
                     headers: {
-                         headers
+                        Authorization: `Bearer ${token}`
                     }
                 })
                 setUser(data)
@@ -47,7 +46,7 @@ export const UserProvider = ({ children }) => {
         try {
             setLoading(true)
             const {data} = await api.post('/sessions', formData)
-            localStorage.setItem("@TOKEN", JSON.stringify(data.token))
+            localStorage.setItem("@TOKEN", data.token)
             setUser(data.user)
             navigate("/dashboard")
         } catch (error) {
