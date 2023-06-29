@@ -1,23 +1,28 @@
-import { StyledContainer } from "../../styles/container"
 import Header from "../../components/Header"
+import { StyledSmallLink } from "../../styles/buttons"
+
+import { StyledContainer } from "../../styles/container"
 import { StyledDashboardPage } from "./style"
 import { StyledHeadline, StyledTitleOne, StyledTitleTwo } from "../../styles/typography"
 
-function DashboardPage() {
-    const userData = JSON.parse(localStorage.getItem("@USER"))
+import { useContext } from "react"
+import { UserContext } from "../../providers/UserContext"
 
-   const handleLogout = () => {
-    localStorage.clear()
-   }
+function DashboardPage() {
+    const { user, userLogout} = useContext(UserContext)
 
     return (
         <StyledContainer>
             <StyledDashboardPage>
-                <Header buttonText="Sair" buttonTo="/" onButtonClick={handleLogout} />
+                <Header>
+                    <StyledSmallLink onClick={userLogout}>
+                        Sair
+                    </StyledSmallLink>
+                </Header>
 
                 <div>
-                    <StyledTitleOne>Olá, {userData.name}</StyledTitleOne>
-                    <StyledHeadline>{userData.course_module}</StyledHeadline>
+                    <StyledTitleOne>Olá, {user.name}</StyledTitleOne>
+                    <StyledHeadline>{user.course_module}</StyledHeadline>
                 </div>
 
                 <main>

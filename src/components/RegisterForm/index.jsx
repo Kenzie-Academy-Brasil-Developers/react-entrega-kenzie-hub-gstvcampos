@@ -1,18 +1,16 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { registerFormShema } from "./registerFormShema"
-import { useNavigate } from "react-router-dom"
 
 import { Input } from "../Input"
 import { Select } from "../Select"
 import { StyledButton } from "../../styles/buttons"
-import { api } from "../../services/api"
 
-import { ToastContainer, toast } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
+import { useContext } from "react"
+import { UserContext } from "../../providers/UserContext"
 
 function RegisterForm() {
-    const navigate = useNavigate()
+    const { userRegister } = useContext(UserContext)
 
     const { 
         register, 
@@ -21,37 +19,6 @@ function RegisterForm() {
     } = useForm({
         resolver: zodResolver(registerFormShema)
     })
-
-    const userRegister = async (formData) => {
-        try {
-            const {data} = await api.post('/users', formData)
-            toast.success('Conta criada com sucesso. Você será redirecionado para a página de login.', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            })
-            setTimeout(() => {
-                navigate("/")
-            }, 3200)
-
-        } catch (error) {
-            toast.error(error.response.data.message, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            })
-        }
-    }
 
     const submit = (formData) => {
         userRegister(formData)
@@ -119,7 +86,6 @@ function RegisterForm() {
             {errors.course_module ? <p>{errors.course_module.message}</p> : <p></p>}
 
             <StyledButton type="submit">Cadastrar</StyledButton>
-            <ToastContainer/>
         </form>
     )
 }
