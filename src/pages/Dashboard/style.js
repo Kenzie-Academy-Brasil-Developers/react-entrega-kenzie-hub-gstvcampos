@@ -5,20 +5,12 @@ export const StyledDashboardPage = styled.div`
         border-bottom: 1px solid var(--color-grey-3);
     }
 
-    div {
+    .user__container {
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         height: 120px;
         border-bottom: 1px solid var(--color-grey-3);
-    }
-
-    main {
-        margin-top: 3rem;
-
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
     }
 `

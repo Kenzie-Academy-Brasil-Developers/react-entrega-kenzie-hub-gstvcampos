@@ -13,9 +13,7 @@ import { useContext } from "react"
 import { UserContext } from "../../providers/UserContext"
 
 function LoginForm() {
-    const { userLogin } = useContext(UserContext)
-
-    const [loading, setLoading] = useState(false)
+    const { userLogin, loading } = useContext(UserContext)
 
     const { 
         register, 
@@ -26,7 +24,7 @@ function LoginForm() {
     })
 
     const submit = (formData) => {
-        userLogin(formData, setLoading)
+        userLogin(formData)
     }
 
     return (

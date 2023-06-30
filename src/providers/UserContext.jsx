@@ -42,7 +42,7 @@ export const UserProvider = ({ children }) => {
     }, [])
 
 
-    const userLogin = async (formData, setLoading) => {
+    const userLogin = async (formData) => {
         try {
             setLoading(true)
             const {data} = await api.post('/sessions', formData)
@@ -67,8 +67,9 @@ export const UserProvider = ({ children }) => {
 
     const userRegister = async (formData) => {
         try {
+            setLoading(true)
             const {data} = await api.post('/users', formData)
-            toast.success('Conta criada com sucesso. Você será redirecionado para a página de login.', {
+            toast.success('Conta criada com sucesso', {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -78,9 +79,7 @@ export const UserProvider = ({ children }) => {
                 progress: undefined,
                 theme: "dark",
             })
-            setTimeout(() => {
-                navigate("/")
-            }, 3200)
+            navigate("/")
 
         } catch (error) {
             toast.error(error.response.data.message, {
@@ -93,6 +92,9 @@ export const UserProvider = ({ children }) => {
                 progress: undefined,
                 theme: "dark",
             })
+
+        } finally {
+            setLoading(false)
         }
     }
 

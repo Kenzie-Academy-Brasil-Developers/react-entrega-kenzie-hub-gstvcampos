@@ -68,3 +68,18 @@ export const StyledSmallLink = styled(Link)`
         background-color: var(--color-grey-2);
     }
 `
+
+export const StyledGreyButton = styled.button`
+    ${ButtonStyles}
+    font-weight: 600;
+    font-size: clamp(0.50rem, 7vw, 1.5rem);
+
+    height: clamp(1.75rem, 7vw, 2.5rem);
+    padding: 0 clamp(0.75rem, 7vw, 1rem);
+
+    background-color: var(--color-grey-3);
+    
+    :hover {
+        background-color: var(--color-grey-2);
+    }
+`
