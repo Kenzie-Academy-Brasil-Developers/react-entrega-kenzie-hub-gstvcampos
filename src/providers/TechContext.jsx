@@ -9,11 +9,6 @@ export const TechProvider = ({ children }) => {
     
     const { setLoading } = useContext(UserContext)
 
-    /*{
-    "title": "React",
-    "status": "Iniciante"
-    }*/
-
     const createTech = async ( formData ) => {
         try {
             setLoading(true)
